@@ -65,6 +65,9 @@ public class TestSubReqProto {
         // 实践证明使用protobuf编码比使用ByteBuffer直接编码成二进制所占用的空间还要少
     }
 
+    /**
+     * 使用ByteBuffer对pojo进行编码成二进制，测试其编码后的二进制数组大小
+     */
     private static void byteBufferTest() {
         SubscribeReq subReq = new SubscribeReq();
         subReq.setSubReqID(1);
