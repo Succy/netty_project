@@ -1,4 +1,4 @@
-package cn.succy.netty.server;
+package cn.succy.netty.server.handler;
 
 import cn.succy.netty.bean.SubscribeReq;
 import cn.succy.netty.bean.SubscribeResp;

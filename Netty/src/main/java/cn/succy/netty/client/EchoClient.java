@@ -1,5 +1,6 @@
 package cn.succy.netty.client;
 
+import cn.succy.netty.client.handler.EchoClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

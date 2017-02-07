@@ -1,4 +1,4 @@
-package cn.succy.netty.client;
+package cn.succy.netty.client.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

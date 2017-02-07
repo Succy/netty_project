@@ -1,4 +1,4 @@
-package cn.succy.netty.client;
+package cn.succy.netty.client.handler;
 
 import cn.succy.netty.bean.SubscribeReq;
 import io.netty.channel.ChannelHandlerContext;
