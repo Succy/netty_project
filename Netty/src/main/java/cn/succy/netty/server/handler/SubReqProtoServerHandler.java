@@ -22,7 +22,7 @@ public class SubReqProtoServerHandler extends ChannelInboundHandlerAdapter {
 
         // 对用户名进行校验一下
         if ("Succy".equalsIgnoreCase(req.getUserName())) {
-            System.out.println("Accept client request, msg = " + req.toString());
+            System.out.println("Accept client request, msg: [\n" + req.toString() + "]");
 
             SubscribeRespProto.SubscribeResp.Builder builder = SubscribeRespProto.SubscribeResp.newBuilder();
             builder.setSubReqID(req.getSubReqID());

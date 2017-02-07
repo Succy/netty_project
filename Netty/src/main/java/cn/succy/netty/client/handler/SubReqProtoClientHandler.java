@@ -23,14 +23,23 @@ public class SubReqProtoClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        SubscribeReq subReq = createSubReq();
-        ctx.writeAndFlush(subReq);
+        // 循环多次，营造压力测试，造成TCP粘包，测试服务器读半包解析
+        for (int i = 0; i < 10; i++) {
+            SubscribeReq subReq = createSubReq(i);
+            ctx.write(subReq);
+        }
+        ctx.flush();
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         SubscribeResp resp = (SubscribeResp) msg;
-        System.out.println("Server response msg = " + resp.toString());
+        System.out.println("Server response msg: [\n" + resp.toString() + "]");
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        ctx.flush();
     }
 
     @Override
@@ -39,14 +48,14 @@ public class SubReqProtoClientHandler extends ChannelInboundHandlerAdapter {
         ctx.close();
     }
 
-    private static SubscribeReqProto.SubscribeReq createSubReq() {
+    private static SubscribeReqProto.SubscribeReq createSubReq(int subReqId) {
         SubscribeReqProto.SubscribeReq.Builder builder = SubscribeReqProto.SubscribeReq.newBuilder();
-        builder.setSubReqID(1);
+        builder.setSubReqID(subReqId);
         builder.setPhoneNum("13078077563");
         builder.setProductName("Netty in action");
         builder.setUserName("Succy");
         List<String> addressList = new ArrayList<>();
-        addressList.add("广州市海珠区工业大道");
+        addressList.add("GuangZhou HaiZhu GongYeDaDao");
         builder.addAllAddress(addressList);
 
         return builder.build();
