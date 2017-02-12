@@ -1,0 +1,44 @@
+package rpc;
+
+option java_package = "cn.succy.rpc.message";
+
+enum RespCode {
+    OK = 0;
+
+    REQUEST_ARG_ERR = 1; // Server received bad request data
+    NOT_FOUND = 2; // Server received bad request proto
+    SERVICE_NOT_FOUND = 3; // Service not found on server
+    METHOD_NOT_FOUND = 4; // Method not found on server
+    RPC_ERROR = 5; // Rpc threw exception on server
+    RPC_FAILED = 6; // Rpc failed on server
+
+    // Client-side errors (these are returned by the client-side code)
+    INVALID_REQUEST_PROTO = 7; // Rpc was called with invalid request proto
+    BAD_RESPONSE_PROTO = 8; // Server returned a bad response proto
+    UNKNOWN_HOST = 9; // Could not find supplied host
+    IO_ERROR = 10; // I/O error while communicating with server
+};
+
+message Request {
+    required int32 requestId = 1;
+    required string serviceName = 2;
+    required string methodName = 3;
+    optional Parameter param = 4;
+};
+
+message Response {
+    required int32 requsetId = 1;
+    optional string msg = 2;
+    required RespCode respCode = 3;
+    optional Parameter result = 4;
+};
+
+message Parameter {
+    optional bytes protoParam = 1;
+    optional string stringParam = 2;
+    optional int32 intParam = 3;
+    optional int64 longParam = 5;
+    optional bool booleanParam = 7;
+    optional float floatParam = 8;
+    optional double doubleParam = 9;
+} ;

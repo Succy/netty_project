@@ -1,0 +1,19 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 9856,
+    "serverName": "TestSvr"
+  },
+  "db": {
+    "url": "127.0.0.1",
+    "port": 3306,
+    "user": "root",
+    "password": "succy",
+    "dbName": "test",
+    "dataSource": "com.mysql.jdbc.DataSource"
+  },
+  "cache" : {
+    "host": "127.0.0.1",
+    "port": 6379
+  }
+}
