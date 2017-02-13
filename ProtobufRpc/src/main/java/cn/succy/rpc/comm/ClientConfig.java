@@ -48,9 +48,12 @@ public class ClientConfig extends Config {
             return false;
         }
         remotePort = client.getIntValue(ConfigDef.Client.PORT);
+        logger.debug("assignment remotePort ==> %d", remotePort);
+
         return true;
     }
 
+    // getter
     public String getRemoteHost() {
         return remoteHost;
     }
