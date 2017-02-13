@@ -17,13 +17,8 @@ import java.io.IOException;
 
 public abstract class Config {
     private String configFile;
-    protected Logger logger;
     private JSONObject jsonObject;
-
-
-    public Config() {
-        logger = LoggerFactory.getLogger(Config.class);
-    }
+    protected static Logger logger = LoggerFactory.getLogger(Config.class);
 
     public void setConfigFile(String configFile) {
         this.configFile = configFile;
@@ -39,7 +34,7 @@ public abstract class Config {
      */
     public boolean init() {
         if (this.configFile == null || "".equals(this.configFile)) {
-            logger.error("The Configure file not found!");
+            logger.error("The Configure file not found, Please set configure file first!");
             return false;
         }
         BufferedReader bufReader = null;

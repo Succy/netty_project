@@ -10,7 +10,7 @@ import java.io.Serializable;
  **/
 
 public class SubscribeReq implements Serializable {
-    private static final long serialVersionUID = 5996430729196623999L;
+    private static final long serialVersionUID = 8625000568328193797L;
     private int subReqID;
     private String userName;
     private String productName;

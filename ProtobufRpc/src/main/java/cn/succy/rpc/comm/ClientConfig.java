@@ -1,5 +1,6 @@
 package cn.succy.rpc.comm;
 
+import cn.succy.rpc.comm.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 
 /**
@@ -35,12 +36,18 @@ public class ClientConfig extends Config {
             return false;
         }
 
-        if(client.getString(ConfigDef.Client.HOST) == null) {
+        if(StringUtil.isEmpty(client.getString(ConfigDef.Client.HOST))) {
             logger.error("can not resolve the required field: client.host");
             return false;
         }
         remoteHost = client.getString(ConfigDef.Client.HOST);
+        logger.debug("assignment remoteHost ==> %s", remoteHost);
 
+        if (client.getIntValue(ConfigDef.Client.PORT) <= 0) {
+            logger.error("can not resolve the required field: client.port");
+            return false;
+        }
+        remotePort = client.getIntValue(ConfigDef.Client.PORT);
         return true;
     }
 
